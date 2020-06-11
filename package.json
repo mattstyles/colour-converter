@@ -1,0 +1,36 @@
+{
+  "name": "colour-converter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava spec/**/*.js --tap | tap-nyan"
+  },
+  "keywords": [
+    "colour",
+    "convert"
+  ],
+  "author": "Matt Styles <matt@personalurban.com>",
+  "engines": {
+    "node": ">12.8.0"
+  },
+  "engineStrict": true,
+  "license": "MIT",
+  "standard": {
+    "ignore": [
+      "**/node_modules/**"
+    ]
+  },
+  "dependencies": {
+    "chroma-js": "^2.1.0",
+    "event-stream": "^4.0.1",
+    "jsonstream": "^1.0.3",
+    "minimist": "^1.2.5",
+    "stream-json": "^1.5.0"
+  },
+  "devDependencies": {
+    "ava": "^3.8.2",
+    "standard": "^14.3.4",
+    "tap-nyan": "^1.1.0"
+  }
+}

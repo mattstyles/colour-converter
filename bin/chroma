@@ -1,0 +1,23 @@
+#! /usr/bin/env node
+
+const minimist = require('minimist')
+const es = require('event-stream')
+// const json = require('jsonstream')
+const { parser } = require('stream-json')
+
+const stringToHsl = require('../lib')
+
+const args = minimist(process.argv.slice(2))
+
+console.log(args)
+
+const passthrough = _ => {
+  console.log('>>', _)
+  return _
+}
+
+process.stdin
+  // .pipe(es.split())
+  .pipe(parser())
+  .pipe(es.mapSync(passthrough))
+  .pipe(process.stdout)
