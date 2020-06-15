@@ -2,7 +2,10 @@
   "name": "colour-converter",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "bin": {
+    "hsl": "bin/chroma"
+  },
   "scripts": {
     "test": "ava spec/**/*.js --tap | tap-nyan",
     "test-verbose": "ava spec/**/*.js --verbose"
