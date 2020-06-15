@@ -1,17 +1,15 @@
 #! /usr/bin/env node
 
-const minimist = require('minimist')
+// const minimist = require('minimist')
 const es = require('event-stream')
-const { compose } = require('ramda')
+const { compose, is } = require('ramda')
 
 const { stringToHsl, objectToHsl } = require('../lib')
 
-const args = minimist(process.argv.slice(2))
+// const args = minimist(process.argv.slice(2))
 
 const passthrough = _ => {
-  console.log('>>', _)
-  console.log(typeof _)
-  return typeof _ === 'string'
+  return is(String, _)
     ? sendAsString(_)
     : objectToHsl(_)
 }
