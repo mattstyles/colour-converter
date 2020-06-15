@@ -2,22 +2,40 @@
 
 const minimist = require('minimist')
 const es = require('event-stream')
-// const json = require('jsonstream')
-const { parser } = require('stream-json')
+const { compose } = require('ramda')
 
-const stringToHsl = require('../lib')
+const { stringToHsl, objectToHsl } = require('../lib')
 
 const args = minimist(process.argv.slice(2))
 
-console.log(args)
-
 const passthrough = _ => {
   console.log('>>', _)
-  return _
+  console.log(typeof _)
+  return typeof _ === 'string'
+    ? sendAsString(_)
+    : objectToHsl(_)
 }
 
+const trim = str => str.trim()
+const sendAsString = compose(
+  stringToHsl,
+  trim
+)
+const toString = _ => _.toString()
+const parse = _ => {
+  try {
+    return JSON.parse(_)
+  } catch (err) {
+    return _
+  }
+}
+const toJson = _ => JSON.stringify(_, null, '  ')
+
 process.stdin
-  // .pipe(es.split())
-  .pipe(parser())
-  .pipe(es.mapSync(passthrough))
+  .pipe(es.mapSync(compose(
+    toJson,
+    passthrough,
+    parse,
+    toString
+  )))
   .pipe(process.stdout)

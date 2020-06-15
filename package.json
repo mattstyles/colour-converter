@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "ava spec/**/*.js --tap | tap-nyan"
+    "test": "ava spec/**/*.js --tap | tap-nyan",
+    "test-verbose": "ava spec/**/*.js --verbose"
   },
   "keywords": [
     "colour",
@@ -24,9 +25,8 @@
   "dependencies": {
     "chroma-js": "^2.1.0",
     "event-stream": "^4.0.1",
-    "jsonstream": "^1.0.3",
     "minimist": "^1.2.5",
-    "stream-json": "^1.5.0"
+    "ramda": "^0.27.0"
   },
   "devDependencies": {
     "ava": "^3.8.2",
