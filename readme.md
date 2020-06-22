@@ -24,3 +24,9 @@ echo '[ "#f7fafc", "#edf2f7" ]' | hsl
 ```sh
 echo '{ "red": { "400": "#fe6f5e", "700": "#c62d42" } }' | hsl
 ```
+
+The output can be piped to a file as valid json:
+
+```sh
+cat scale.json | hsl > scale-hsl.json
+```
